@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <title>sale-fees-calculator</title>
+      <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+    rel="Stylesheet" type="text/css" />
+      <link href="css/style.css" rel="stylesheet">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   </head>
+   <body>
+      <div class="container">
+         <form action="/action_page.php">
+            <input type="file" accept="image/*" name="image" id="file" onchange="preview_image()" style="display: none;">
+            <div class="row uploadLogo">
+                <label class="uploadLogoLabel" for="file">Click Here to Upload a Logo</label>
+            </div>
+            <div id="calculator">
+                <div class="row">
+                    <div class="col-50">
+                        <img id="output" />
+                    </div>
+                    <div class="cor-50">
+                        <textarea id="subject" name="subject" placeholder="Real Estate:
+Name:
+Email:
+Website:
+Mobile:" style="height:112px">Real Estate:
+Name:
+Email:
+Website:
+Mobile:</textarea>
+                    </div>
+                </div>
+               
+               <div class="row">
+                    <label id="propertyDetails" class="headingType">Property Details</label>
+                </div>
+               
+               <div class="row">
+                    <div id="property" class="col-25">
+                        <label>Property Reference</label>
+                        <input type="text" id="propertyValue" value="e.g.: Studio, Shamal Residences 2, JVC" maxlength="40" onclick="this.select()">
+                    </div>
+                    <div id="transferDate" class="col-75">
+                        <label>Transfer Date</label>
+                        
+                        <input type="date" id="tDate" onchange="dateFormatter1()" placeholder= "Jul/15/1997" />
+                        <input type="text" id="transferDateValue" onclick="dateHidden1()" hidden />
+                    </div>
+                </div>
+               <div class="row">
+                    <div id="size" class="col-25">
+                        <label>Size</label>
+                        <div class="info">property size as per title deed in sq ft.</div>
+                        <input type="text" id="sizeValue" value="1000" maxlength="40" onclick="this.select()" onchange="SaleTransferCalculater()">
+                    </div>
+                    <div id="price" class="col-75">
+                        <label>Price</label>
+                        <div class="info">selling price in AED</div>
+                        <input type="text" id="priceValue" class="number" value="1,000,000" onclick="this.select()" onchange="SaleTransferCalculater()" />
+                    </div>
+                </div>
+               
+
+               <div class="row">
+                    <label id="transferFees" class="headingType">Transfer Fees</label>
+                </div>
+               
+               <div class="row">
+                    <div  class="col-25">
+                        <label id="dubaiDepartmentTransferFee" >Dubai Land Department Transfer Fee</label>
+                        <div class="info">4% of the sale price in Manager's Cheque to DLD</div>
+                        <input type="text" id="dubaiDepartmentTransferFeeValue" value="40,000" maxlength="40" onclick="this.select()">
+                    </div>
+                    <div id="departmentAdminFees" class="col-75">
+                        <label>Dubai Land Department Admin Fees</label>
+                        <div class="info">580 AED if apartment, villa or + 430 AED if Land</div>
+                        <input type="text" id="departmentAdminFeesValue" class="number" value="580" onclick="this.select()" onchange="SaleTransferCalculater()" />
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div  class="col-25">
+                        <label id="registrationTrusteeFees">Registration Trustee Fees</label>
+                        <div class="info">2,000 AED If sale value 500,000 and AED 4,000 AED if above + 5% VAT</div>
+                        <input type="text" id="registrationTrusteeFeesValue" value="4,200" maxlength="40" onclick="this.select()" onchange="SaleTransferCalculater()">
+                    </div>
+                    <div id="brokerageCommission" class="col-75">
+                        <label>Brokerage Commission</label>
+                        <div class="info">agreed commission amount in AED + 5% VAT</div>
+                        <input type="text" id="brokerageCommissionValue" class="number" value="20,000" onclick="this.select()" readonly />
+                    </div>
+                </div>
+               
+            
+               
+               <div class="row">
+                    <label id="servieChargeReimbursement" class="headingType">Service Charge Reimbursement</label>
+                </div>
+               
+               <div class="row">
+                    <div id="serviceCharge" class="col-25">
+                        <label>Service Charge Rate</label>
+                        <div class="info">service charge rate per sq. ft.</div>
+                        <input type="text" id="serviceChargeValue" value="15" maxlength="40" onclick="this.select()" onchange="SaleTransferCalculater()">
+                    </div>
+                    <div id="yearlyServiceCharge" class="col-75">
+                        <label>Service Charge Per Year</label>
+                        <div class="info">total service Charge cost Per Year in AED</div>
+                        <input type="text" id="yearlyServiceChargeValue" class="number" value="15,000" onclick="this.select()" readonly />
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div id="advancedPaidSeller" class="col-25">
+                        <label>Advanced Paid by the Seller</label>
+                        <div class="info">service charge paid for the year in advance</div>
+                        <input type="text" id="advancedPaidSellerValue" value="15,000" maxlength="40" onclick="this.select()" onchange="SaleTransferCalculater()">
+                    </div>
+                    <div id="applicableReimbursment" class="col-75">
+                        <label>Applicable Reimbursment</label>
+                        <div class="info">procated amount in to be reimbursed to the seller.</div>
+                        <input type="text" id="applicableReimbursmentValue" class="number" value="0" onclick="this.select()" onchange="SaleTransferCalculater()" />
+                    </div>
+                </div>
+               
+               
+               
+               <div class="row">
+                    <label id="rentDetailsReimbursement" class="headingType">Rent Details and Reimbursement (If property is rented)</label>
+                </div>
+               
+               <div class="row">
+                    <div id="contractStartDate" class="col-25">
+                        <label>Rent Contract Start Date</label>
+                        <input type="date" id="startDate" onchange="dateFormatter2()" placeholder="Jul/15/1997" />
+                        <input type="text" id="contractStartDateValue" onclick="dateHidden2()" hidden />
+                    </div>
+                    <div id="contractEndDate" class="col-75">
+                        <label>Rent Contract End Date</label>
+                        <input type="date" id="endDate" onchange="dateFormatter3()" placeholder="Jul/15/1997" />
+                        <input type="text" id="contractEndDateValue" onclick="dateHidden3()" hidden />
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="numberofCheques" class="col-25">
+                        <label>Number of Cheques</label>
+                        <input type="text" id="numberofChequesValue" value="4" maxlength="40" onclick="this.select()" onchange="SaleTransferCalculater()">
+                    </div>
+                    <div id="rentalContract" class="col-75">
+                        <label>Rental Contract Value</label>
+                        <input type="text" id="rentalContractValue" class="number" value="100,000" onclick="this.select()" onchange="SaleTransferCalculater()" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="securityDeposit" class="col-25">
+                        <label>Security Deposit Collected</label>
+                        <div class="info">security deposit the seller received from the</div>
+                        <input type="text" id="securityDepositValue" value="5,000" maxlength="40" onclick="this.select()" readonly>
+                    </div>
+                    <div id="rentCollected" class="col-75">
+                        <label>Rent Collected for the Year</label>
+                        <div class="info">rent amount collected from the tenant by the seller </div>
+                        <input type="text" id="rentCollectedValue" class="number" value="0" onclick="this.select()" onchange="SaleTransferCalculater()" />
+                    </div>
+                </div>
+               
+               
+               <div class="row">
+                  <div id="totalRentAmount">
+                     <label>Rent Amount to be Transferred to the New Owner</label>
+                     <div class="info">rent amount to be transferred to the buyer</div>
+                     <input type="text" id="totalRentAmountValue" class="number" value="0" onclick="this.select()" onchange="SaleTransferCalculater()" />
+                  </div>
+               </div>
+               <div class="row">
+                  <div id="securityDepositReimbursed">
+                     <label >Security Deposit to be Transferred to the New Owner</label>
+                     <div class="info">security deposit amount to be transferred to the buyer</div>
+                     <input type="text" id="securityDepositReimbursedValue" value="5,000" onclick="this.select()" onchange="SaleTransferCalculater()" />
+                  </div>
+               </div>
+               <div class="row">
+                 <div id="note">
+                    <label  class="headingType">Notes:</label>
+                </div>
+                 <div id="noteValue">
+                     <b>Required Documents:</b> 1) Original title Deed. 2) Original NOC from Developer.<br>3) MOU Sale agreement form-F. 4)Original passport, visa, Emirates ID (seller and buyer).<br><b>Land Department Fees:</b> 4% from selling price + 580 AED If Apartment, Villa (or + 430 AED If Land. Managers Chq.)<br>Registration Trustee Fees: 4,000 AED + 200 AED (5%VAT) if the price of the property equal or more than 500,000 AED.<br>(2,000 AED + 100 AED (5%VAT) if the price of the property less than 500,000 AED).
+                </div>
+               </div>
+            </div>
+            <div class="row">
+               <button type="button" onclick="SaleTransferPdf()">Download / Print</button>
+            </div>
+         </form>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+      <script src="scripts/customScript.js"></script>
+   </body>
+</html>

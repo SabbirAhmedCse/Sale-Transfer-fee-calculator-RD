@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+}
+p{
+    margin: 0;
+    font-size: 14px;
+}
+.uploadLogo {
+    background-color: #FE2727;
+    color: #fff;
+    display: inline-flex;
+    text-align: center;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.uploadLogoLabel {
+    width: 250px;
+        text-align: center;
+        margin: auto;
+        padding: 5px;
+    }
+
+
+.uploadLogo:hover {
+    background-color: #fff;
+    color: #FE2727;
+}
+
+#output {
+    width: 250px;
+    height: 112px;
+}
+#subject{
+    width: 100%;
+}
+
+.headingType {
+    font-size: 19px;
+    padding: 15px 0;
+}
+
+input[type=text],
+input[type=number],
+input[type=date] {
+    width: 100%;
+    font-size: 17px;
+    font-family: Time New Romans;
+    text-align: center;
+    color: #808080;
+    padding: 5px;
+    border: 2px solid #FE2727;
+    outline: none;
+    border-radius: 4px;
+    resize: vertical;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+#dubaiDepartmentTransferFeeValue,
+#brokerageCommissionValue,
+#yearlyServiceChargeValue,
+#securityDepositValue{
+    width: 100%;
+    font-size: 16px;
+    font-family: Time New Romans;
+    text-align: center;
+    padding: 5px;
+    border: 3px solid #FE2727;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+textarea {
+    width: 100%;
+    font-size: 16px;
+    font-family: Time New Romans;
+    padding: 5px;
+    color: #808080;
+    border: 1px solid #C0C0C0;
+    border-radius: 4px;
+    outline: none;
+    resize: vertical;
+}
+
+#notes {
+    width: 100%;
+    font-size: 16px;
+    padding: 5px;
+    border: 2px solid #FE2727;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 5px 5px 5px 0;
+    font-size: 19px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.info {
+    margin: 0;
+    color: #808080;
+    font-size: 14px;
+}
+
+button[type=button] {
+    background-color: #FE2727;
+    color: white;
+    text-align: center;
+    font-size: 19px;
+    padding: 10px 10px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+button[type=button]:hover {
+    background-color: #FE2700;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 45%;
+    margin-top: 6px;
+}
+.cor-50{
+    width: 45%;
+    float: right;
+    margin-top: 6px;
+}
+.col-50{
+    width: 45%;
+    float: left;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: right;
+    width: 45%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#load{
+    margin-right: 20px;
+}
+#noteValue{
+    font-size: 14px;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 600px) {
+
+    .uploadLogo {
+        width: 100%;
+        margin-bottom: 10px;
+
+    }
+
+    .uploadLogoLabel {
+        text-align: center;
+        margin: auto;
+        padding: 5px;
+    }
+
+    #output {
+        width:100%;
+        height: 110px;
+    }
+    
+    .cor-50{
+    width: 50%;
+    float: right;
+    margin-top: 6px;
+}
+.col-50{
+    width: 40%;
+    float: left;
+    margin-top: 6px;
+}
+
+    .col-25,
+    .col-75,
+    input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
